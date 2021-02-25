@@ -1,5 +1,5 @@
 const {Brand, Category} = require('../models/index')
-
+// 
 class BrandController {
     static showAll(req,res){
         Brand.findAll({include:Category})
