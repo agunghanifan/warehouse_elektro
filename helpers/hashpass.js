@@ -1,3 +1,4 @@
+//ga usah dibuah
 var bcrypt = require('bcryptjs');
 
 const hashPassword = (password) => {

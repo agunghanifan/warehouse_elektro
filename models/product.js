@@ -1,4 +1,5 @@
 'use strict';
+//copy langsung tanpa harus diubah
 const {
   Model
 } = require('sequelize');

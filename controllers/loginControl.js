@@ -1,6 +1,5 @@
 const {Admin, Product} = require("../models")
 const {isMatch, hashPassword} = require("../helpers/hashpass")
-
 class LoginControl {
     static login(req, res) {
         res.render("login", {errors: req.query.errors})
@@ -25,11 +24,11 @@ class LoginControl {
                      userId : data.id,
                      username: data.Username   
                     }
-                     res.redirect("/dashboard")
+                     res.redirect("/products")
                 }
             })
             .catch(err => {
-                res.redirect("/home?errors=Invalid username / password")
+                res.redirect("/login?errors=Invalid username / password")
                 // res.send(err)
                 // let errors = []
                 // err.errors.forEach(error => {
@@ -52,7 +51,7 @@ class LoginControl {
         console.log(newPassword)
         Admin.create(newPassword)
             .then((data) => {
-                res.redirect("/home")
+                res.redirect("/login")
             })
             .catch((err) => {
                 res.redirect("/register?errors=Invalid username / password")
@@ -63,12 +62,6 @@ class LoginControl {
                 // })
                 // res.redirect(`/register?errors=${errors}`)
             })
-    }
-
-    static logOut(req, res) {
-        req.session.destroy(err => {
-            
-        })
     }
 
 }

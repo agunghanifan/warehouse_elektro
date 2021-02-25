@@ -1,6 +1,7 @@
-const {Product, Admin} = require("../models")
+const {Product, Brand, Category} = require("../models")
 
-class DasboardControl {
+//product controller diubah namanya
+class ProductControl {
     static showProducts(req, res) {
         Product.findAll({
             order: [["id", "ASC"]],
@@ -10,7 +11,7 @@ class DasboardControl {
             // }]
             .then((data) => {
                 // console.log(data)
-                res.render("dashboard", {data, errors: req.query.errors})
+                res.render("./product/productList", {data})
             })
             .catch((err) => {
                 res.send(err)
@@ -33,7 +34,7 @@ class DasboardControl {
                 })
             })
             .then (data => {
-                res.redirect("/dashboard")
+                res.redirect("/products")
             })
             .catch(err => {
                 res.send(err)
@@ -55,18 +56,32 @@ class DasboardControl {
                 })
             })
             .then (data => {
-                res.redirect("/dashboard")
+                res.redirect("/products")
             })
             .catch(err => {
                 res.send(err)
             })
     }
 
-    static editProduct (req, res) {
-        res.render("edit", {errors: req.query.errors})
+    static editProductForm (req, res) {
+        let id = req.params.id
+
+        Product.findByPk(id,{include:[{
+            model:Brand,
+            as:'BrandId'
+        },{
+            model:Category,
+            as:'CategoryId'
+        }]})
+            .then(data => res.send(data))
+            .catch(err => console.log(err))
+
+
+
+        // res.render("edit", {errors: req.query.errors})
     }
 
-    static inputEditProduct (req, res) {
+    static editProductData (req, res) {
         // let idSearch = Number(req.params.id)
         // let dataedit
         // Product.findByPk(idSearch)
@@ -86,4 +101,4 @@ class DasboardControl {
 }
 
 
-module.exports = DasboardControl
+module.exports = ProductControl

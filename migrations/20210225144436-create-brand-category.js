@@ -1,27 +1,14 @@
 'use strict';
-//migration ga usah diubah
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Products', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('BrandCategories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.TEXT
-      },
-      stock: {
-        type: Sequelize.INTEGER
-      },
-      harga: {
-        type: Sequelize.INTEGER
-      },
-      BrandId: {
+      brandId: {
         type: Sequelize.INTEGER,
         references:{
           model:'Brands',
@@ -30,7 +17,7 @@ module.exports = {
         onDelete:'cascade',
         onUpdate:'cascade'
       },
-      CategoryId: {
+      categoryId: {
         type: Sequelize.INTEGER,
         references:{
           model:'Categories',
@@ -49,7 +36,7 @@ module.exports = {
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Products');
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('BrandCategories');
   }
 };

@@ -11,13 +11,21 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    let datas = require('../data/admins.json');
-    datas.forEach(data => {
-      data.createdAt = new Date(),
-      data.updatedAt = new Date()
-    })
     
-    return queryInterface.bulkInsert("Admins", datas, {})
+    return queryInterface.bulkInsert("Admins", [
+      {
+          username: "agunghanifan",
+          password: "agung123",
+          createdAt:new Date(),
+          updatedAt:new Date()
+      },
+      {
+          username: "timotius",
+          password: "timotius123",
+          createdAt:new Date(),
+          updatedAt:new Date()
+      }
+  ], {})
 
   },
 

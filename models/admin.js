@@ -1,4 +1,5 @@
 'use strict';
+//masuk tanpa harus diubah
 const {
   Model
 } = require('sequelize');
