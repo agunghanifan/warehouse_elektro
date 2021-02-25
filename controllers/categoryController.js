@@ -13,6 +13,16 @@ class CategoryController {
             .catch(err => console.log(err))
     }
 
+    static addCategoryForm(req,res){
+        res.render('./category/addCategory')
+    }
+    static addCategoryData(req,res){
+        let data = +req.body
+        Category.create(data)
+            .then(data => res.redirect('/categories'))
+            .catch(err => console.log(err))
+    }
+
     static deleteCategory(req,res){
         let idInput = +req.params.id
         Category.destroy({where:{

@@ -12,13 +12,12 @@ module.exports = {
      * }], {});
     */
     
-    return queryInterface.bulkInsert("Products", [
+    return queryInterface.bulkInsert("Produks", [
       {
           name: "ROG Phone 3",
           description: "Di dalam bodi ASUS ROG Phone 3 yang berdesain gahar tersemat Snapdragon 865+ dengan RAM dan storage ekstra lega mencapai 12GB dan 512GB.",
           stock: 10,
-          harga: "9999000",
-          
+          price: "9999000",
           createdAt:new Date(),
           updatedAt:new Date()
       },
@@ -26,8 +25,7 @@ module.exports = {
           name: "Phantom 4 Pro V2.0",
           description: "Featuring a 1-inch CMOS sensor that can shoot 4K/60fps videos and 20MP photos, the Phantom 4 Pro V2.0 grants filmmakers absolute creative freedom.",
           stock: 20,
-          harga: 19999000,
-          
+          price: 19999000,
           createdAt:new Date(),
           updatedAt:new Date()
       },
@@ -35,8 +33,7 @@ module.exports = {
           name: "IPhone 12 Mini",
           description: "The iPhone 12 mini has the fastest processor on any phone, it has the same dual-camera system as the iPhone 12, and most remarkably it has all the components and antennas necessary for both sub-6 and (in the US) mmWave 5G",
           stock: 12,
-          harga: 12999000,
-          
+          price: 12999000,
           createdAt:new Date(),
           updatedAt:new Date()
       }

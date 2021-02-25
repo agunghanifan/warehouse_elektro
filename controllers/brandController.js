@@ -1,4 +1,4 @@
-const {Brand, Category} = require('../models/index')
+const {Brand, Category, Produk} = require('../models/index')
 // 
 class BrandController {
     static showAll(req,res){
@@ -8,7 +8,7 @@ class BrandController {
     }
     static showByBrand(req,res){
         let idInput = req.params.id
-        Brand.findByPk(idInput,{include:Category})
+        Brand.findByPk(idInput,{include:Produk})
             .then(data => res.render('brand/brandPersonal',{data}) )
             .catch(err => console.log(err))
     }

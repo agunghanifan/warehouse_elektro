@@ -10,15 +10,15 @@ productRouter.get("/:id/minus", ProductControl.minusStock)
 
 productRouter.get("/:id/plus", ProductControl.plusStock)
 
-// productRouter.get("/add/:id", ProductControl.addProductForm)
-// productRouter.post("/add/:id", ProductControl.addProductData)
+productRouter.get("/add", ProductControl.addProductForm)
+productRouter.post("/add", ProductControl.addProductData)
 
 // //ini buat masuk ke form belom dibikin
-productRouter.get("/:id/edit", ProductControl.editProductForm)
+productRouter.get("/edit/:id", ProductControl.editProductForm)
 // //ini buat input data belom dibikin
-// productRouter.post("/:id/edit", ProductControl.editProductData)
+productRouter.post("/edit/:id", ProductControl.editProductData)
 
-// productRouter.get("/delete/:id", ProductControl.deleteProduct)
+productRouter.get("/delete/:id", ProductControl.deleteProduct)
 
 
 module.exports = productRouter

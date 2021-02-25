@@ -1,16 +1,17 @@
-const {Product, Brand, Category} = require("../models")
+const {Produk, Brand, Category} = require("../models/index")
 
 //product controller diubah namanya
 class ProductControl {
     static showProducts(req, res) {
-        Product.findAll({
+        Produk.findAll({
             order: [["id", "ASC"]],
+            include:[{
+                model:Category
+            },{
+                model:Brand
+            }]
         })
-            // include: [{
-            //     model: [Category, Brand]
-            // }]
             .then((data) => {
-                // console.log(data)
                 res.render("./product/productList", {data})
             })
             .catch((err) => {
@@ -19,22 +20,21 @@ class ProductControl {
     }
 
     static plusStock (req, res) {
-        // console.log(req.params.id)
         let idSearch = Number(req.params.id)
-        Product.findByPk(idSearch)
+        Produk.findByPk(idSearch)
             .then(data => {
                 data.stock = data.stock + 1
                 const dataUpdate = {
                     stock: data.stock,
                 }
-                return Product.update(dataUpdate, {
+                return Produk.update(dataUpdate, {
                     where: {
                         id: idSearch
                     }
                 })
             })
             .then (data => {
-                res.redirect("/dashboard")
+                res.redirect("/products")
             })
             .catch(err => {
                 res.send(err)
@@ -43,58 +43,73 @@ class ProductControl {
 
     static minusStock (req, res) {
         let idSearch = Number(req.params.id)
-        Product.findByPk(idSearch)
+        Produk.findByPk(idSearch)
             .then(data => {
                 data.stock = data.stock - 1
                 const dataUpdate = {
                     stock: data.stock,
                 }
-                return Product.update(dataUpdate, {
+                return Produk.update(dataUpdate, {
                     where: {
                         id: idSearch
                     }
                 })
             })
             .then (data => {
-                res.redirect("/dashboard")
+                res.redirect("/products")
             })
             .catch(err => {
                 res.send(err)
             })
     }
 
+    static addProductForm(req,res){
+        res.render('./product/addProduct')
+    }
+    static addProductData(req,res){
+
+        Produk.create({name:req.body.name,
+            description:req.body.description,
+            stock:req.body.stock,
+            price:+req.body.price,
+            brandId:+req.body.brandId,
+            categoryId:+req.body.categoryId})
+            .then(data => res.redirect('/products'))
+            .catch(err => console.log(err))
+    }
+
     static editProductForm (req, res) {
         let id = req.params.id
 
-        Product.findByPk(id,{include:[{
-            model:Brand,
-            as:'BrandId'
+        Produk.findByPk(id,{include:[{
+            model:Brand 
         },{
-            model:Category,
-            as:'CategoryId'
+            model:Category
         }]})
-            .then(data => res.send(data))
+            .then(data => res.render('./product/editProduct',{data}))
             .catch(err => console.log(err))
 
-
-
-        // res.render("edit", {errors: req.query.errors})
     }
 
     static editProductData (req, res) {
-        // let idSearch = Number(req.params.id)
-        // let dataedit
-        // Product.findByPk(idSearch)
-        //     .then(data => {
-        //         dataedit = data
-        //         // return ProductionHouse.findAll()
-        //     })
-        //     .then(houses => {
-        //         res.render("formsEditMovie", {data: dataedit, errors:req.query.errors})
-        //     })
-        //     .catch(err => {
-        //         res.send(err)
-        //     })
+        let idSearch = Number(req.params.id)
+        let dataedit
+
+        Produk.update({name:req.body.name,
+            description:req.body.description,
+            stock:req.body.stock,
+            price:+req.body.price,
+            brandId:+req.body.brandId,
+            categoryId:+req.body.categoryId},{where:{id:idSearch}})
+
+                .then(data => res.redirect('/products'))
+                .catch(er => console.log(err))
+    }
+
+    static deleteProduct(req,res){
+        Produk.destroy({where:{id:+req.params.id}})
+            .then(data => res.redirect('/products'))
+            .catch(err => console.log(err))
     }
 
 
