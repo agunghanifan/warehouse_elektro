@@ -1,0 +1,19 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+    
+<form action="/products/<%= data.id %>/edit" method="POST">
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" class="form-control" id="name" placeholder="<%= data.name %>" name="name">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+
+
+
+</body>
+</html>
