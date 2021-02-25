@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/agunghanifan/warehouse_elektro#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "pg": "^8.5.1",

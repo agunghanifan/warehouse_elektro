@@ -1,0 +1,30 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Brand Name</th>
+        <th scope="col">Product</th>
+        <th scope="col">Desription</th>
+        <th scope="col">Price</th>
+        <th scope="col">Category</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% data.forEach(el => { %>
+      <tr>
+            <td><%= el.BrandId %> </td>  
+            <td><%= el.name %></td>
+            <td><%= el.description %></td>
+            <td><%= el.harga %></td>
+            <td><%= el.CategoryId %></td>
+            <td><%= el.stock %></td>
+            <td><a href="/dashboard/<%= el.id %>/plus"><button>+</button> <a href="/dashboard/<%= el.id %>/minus"><button>-</button> <a href="/dashboard/<%= el.id %>/wholesale"><button>Wholesale</button> <a href="/dashboard/<%= el.id %>/edit"><button>Edit</button></td>
+      </tr>
+    <% }) %> 
+    </tbody>
+  </table>
+</body>
+</html>
