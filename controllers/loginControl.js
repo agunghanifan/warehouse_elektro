@@ -21,6 +21,10 @@ class LoginControl {
                 const isMatchPassword = isMatch(password, data.password)
                 // console.log(isMatchPassword)
                 if(isMatchPassword) {
+                    req.session.user = {
+                     userId : data.id,
+                     username: data.Username   
+                    }
                      res.redirect("/dashboard")
                 }
             })
@@ -59,6 +63,12 @@ class LoginControl {
                 // })
                 // res.redirect(`/register?errors=${errors}`)
             })
+    }
+
+    static logOut(req, res) {
+        req.session.destroy(err => {
+            
+        })
     }
 
 }

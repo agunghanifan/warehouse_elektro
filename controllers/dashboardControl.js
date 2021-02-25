@@ -10,7 +10,7 @@ class DasboardControl {
             // }]
             .then((data) => {
                 // console.log(data)
-                res.render("dashboard", {data})
+                res.render("dashboard", {data, errors: req.query.errors})
             })
             .catch((err) => {
                 res.send(err)
