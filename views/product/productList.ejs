@@ -1,0 +1,31 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+<h1><a href="/products/add">Add Product</a></h1>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Brand Name</th>
+        <th scope="col">Product</th>
+        <th scope="col">Desription</th>
+        <th scope="col">Price</th>
+        <th scope="col">Category</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% data.forEach(el => { %>
+      <tr>
+            <td><%= el.Brand.name %> </td>  
+            <td><%= el.name %></td>
+            <td><%= el.description %></td>
+            <td><%= el.price %></td>
+            <td><%= el.Category.name %></td>
+            <td><%= el.stock %></td>
+            <td><a href="/products/<%= el.id %>/plus"><button>+</button> <a href="/products/<%= el.id %>/minus"><button>-</button> <a href="/products/delete/<%= el.id %>"><button>Wholesale</button> <a href="/products/edit/<%= el.id %>"><button>Edit</button></td>
+      </tr>
+    <% }) %> 
+    </tbody>
+  </table>
+</body>
+</html>

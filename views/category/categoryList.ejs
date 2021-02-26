@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Project</title>
+</head>
+<body>
+    <nav>
+        <a href="/categories">Category</a>
+        <a href="/brands">Brand</a>
+    </nav>
+    <h1>Categories</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+
+                <tr>
+                    <td><%= element.id %></td>
+                    <td><a href="/categories/<%= element.id %>"><%= element.name %></a></td>
+                    <td>
+                        <% element.Brands.forEach(e => { %>
+                            <!-- this will become the link to each brand page -->
+                            <a href="/brands/<%= e.id %>"><%= e.name %></a>
+                        <% }) %>
+                    </td>
+                     <td>
+                        <a href="/categories/add">add</a>
+                         <a href="/categories/delete/<%= element.id %>">delete</a>
+                    </td>
+                </tr>
+
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
